@@ -48,5 +48,10 @@ public class EmployeeController {
 	public void deleteEmployee(@PathVariable UUID id) {
 		service.deleteEmployee(id);
 	}
+	
+	@GetMapping(value="/find-by-email/{email}")
+	public Optional<Employee> findByEmail(@PathVariable("email") String email){
+		return service.findByEmail(email);
+	}
 
 }

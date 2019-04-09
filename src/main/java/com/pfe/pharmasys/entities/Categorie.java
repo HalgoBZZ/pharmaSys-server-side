@@ -2,16 +2,20 @@ package com.pfe.pharmasys.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="categorie")
@@ -30,13 +34,15 @@ public class Categorie implements Serializable{
 	@Column(name="nom")
 	private String nom_cat;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="ajout")
 	private LocalDate date_ajout;
-	
-	@Temporal(TemporalType.DATE)
+
 	@Column(name="modification")
 	private LocalDate date_modification;
+	
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="categorie")
+	private List<Produit> produits;
 	
 	public Categorie() {
 		super();
@@ -48,6 +54,7 @@ public class Categorie implements Serializable{
 		this.nom_cat = nom_cat;
 		this.date_ajout = date_ajout;
 		this.date_modification = date_modification;
+		produits = new ArrayList<>();
 	}
 
 	public String getNom_cat() {
@@ -83,5 +90,14 @@ public class Categorie implements Serializable{
 	public void setDate_modification(LocalDate date_modification) {
 		this.date_modification = date_modification;
 	}
+
+	public List<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setProduits(List<Produit> produits) {
+		this.produits = produits;
+	}
+	
 	
 }

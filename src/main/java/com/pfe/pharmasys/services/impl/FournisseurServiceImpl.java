@@ -1,5 +1,6 @@
 package com.pfe.pharmasys.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,12 +25,15 @@ public class FournisseurServiceImpl implements FournisseurService{
 	
 	@Override
 	public void addFournisseur(Fournisseur fournisseur) {
+		fournisseur.setDate_ajout(LocalDate.now());
+		fournisseur.setDate_modification(LocalDate.now());
 		fournisseurDao.save(fournisseur);
 		
 	}
 
 	@Override
 	public void updateFournisseur(Fournisseur fournisseur) {
+		fournisseur.setDate_modification(LocalDate.now());
 		fournisseurDao.save(fournisseur);
 		
 	}

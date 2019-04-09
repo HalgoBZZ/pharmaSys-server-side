@@ -2,8 +2,11 @@ package com.pfe.pharmasys.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -11,15 +14,15 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.pfe.pharmasys.entities.types.Genre;
 import com.pfe.pharmasys.entities.types.Role;
 
 @Entity
-@Table(name="employe")
+@Table(name="employee")
 public class Employee implements Serializable{
 
 	/**
@@ -28,7 +31,7 @@ public class Employee implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_emp", nullable=false, updatable=false)
 	private UUID id_emp;
 	
@@ -38,11 +41,10 @@ public class Employee implements Serializable{
 	@Column(name="prenom")
 	private String prenom_emp;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="naissance")
 	private LocalDate date_naiss_emp;
 	
-	@Column(name="email")
+	@Column(name="email", unique=true)
 	private String email_emp;
 	
 	@Column(name="adresse")
@@ -62,11 +64,9 @@ public class Employee implements Serializable{
 	@Column(name="sexe")
 	private Genre sexe_emp;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="ajout")
 	private LocalDate date_ajout;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="modification")
 	private LocalDate date_modification;
 	
@@ -78,6 +78,10 @@ public class Employee implements Serializable{
 	
 	@Column(name="photo", length = 1000000)
 	private String photo;
+	
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="employee")
+	private List<Conges> conges;
 
 	public Employee() {
 		super();
@@ -102,6 +106,7 @@ public class Employee implements Serializable{
 		this.login = login;
 		this.pwd = pwd;
 		this.photo = photo;
+		conges = new ArrayList<>();
 	}
 
 	public UUID getId_emp() {
@@ -222,6 +227,14 @@ public class Employee implements Serializable{
 
 	public void setPhoto(String photo) {
 		this.photo = photo;
+	}
+
+	public List<Conges> getConges() {
+		return conges;
+	}
+
+	public void setConges(List<Conges> conges) {
+		this.conges = conges;
 	}
 	
 	

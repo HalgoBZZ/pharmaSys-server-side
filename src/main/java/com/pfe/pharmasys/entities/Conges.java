@@ -11,9 +11,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.pfe.pharmasys.entities.types.Etat;
 
@@ -33,28 +32,27 @@ public class Conges implements Serializable{
 	@Column(name="id_conges")
 	private UUID id_conges;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="debut")
 	private LocalDate date_debut;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="fin")
 	private LocalDate date_fin;
 	
 	@Column(name="cause")
 	private String cause;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="ajout")
 	private LocalDate date_ajout;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="modification")
 	private LocalDate date_modification;
 	
 	@Enumerated(EnumType.STRING)
 	@Column(name="etat")
 	private Etat etat_conges;
+	
+	@ManyToOne
+	private Employee employee;
 
 	public Conges() {
 		super();
@@ -126,6 +124,14 @@ public class Conges implements Serializable{
 
 	public void setEtat_conges(Etat etat_conges) {
 		this.etat_conges = etat_conges;
+	}
+
+	public Employee getEmployee() {
+		return employee;
+	}
+
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	

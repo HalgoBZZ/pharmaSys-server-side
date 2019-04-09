@@ -1,5 +1,6 @@
 package com.pfe.pharmasys.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,12 +23,15 @@ public class CategorieServiceImpl implements CategorieService{
 
 	@Override
 	public void addCategorie(Categorie categorie) {
+		categorie.setDate_ajout(LocalDate.now());
+		categorie.setDate_modification(LocalDate.now());
 		categorieDao.save(categorie);
 		
 	}
 
 	@Override
 	public void updateCategorie(Categorie categorie) {
+		categorie.setDate_modification(LocalDate.now());
 		categorieDao.save(categorie);
 	}
 

@@ -2,16 +2,20 @@ package com.pfe.pharmasys.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 @Entity
@@ -31,13 +35,15 @@ public class Client implements Serializable{
 	@Column(name="nom")
 	private String nom_client;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="ajout")
 	private LocalDate date_ajout;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="modification")
 	private LocalDate date_modification;
+	
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="client")
+	private List<Facture> factures;
 
 	public Client() {
 		super();
@@ -49,6 +55,7 @@ public class Client implements Serializable{
 		this.nom_client = nom_client;
 		this.date_ajout = date_ajout;
 		this.date_modification = date_modification;
+		factures = new ArrayList<>();
 	}
 
 	public UUID getId_client() {
@@ -82,7 +89,14 @@ public class Client implements Serializable{
 	public void setDate_modification(LocalDate date_modification) {
 		this.date_modification = date_modification;
 	}
-	
+
+	public List<Facture> getFactures() {
+		return factures;
+	}
+
+	public void setFactures(List<Facture> factures) {
+		this.factures = factures;
+	}
 	
 	
 }

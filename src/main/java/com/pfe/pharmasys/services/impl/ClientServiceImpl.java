@@ -1,5 +1,6 @@
 package com.pfe.pharmasys.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -22,11 +23,14 @@ public class ClientServiceImpl implements ClientService{
 
 	@Override
 	public void addClient(Client client) {
+		client.setDate_ajout(LocalDate.now());
+		client.setDate_modification(LocalDate.now());
 		clientDao.save(client);
 	}
 
 	@Override
 	public void updateClient(Client client) {
+		client.setDate_modification(LocalDate.now());
 		clientDao.save(client);
 		
 	}

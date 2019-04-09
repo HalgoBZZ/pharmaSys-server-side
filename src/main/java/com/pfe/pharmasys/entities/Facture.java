@@ -2,6 +2,8 @@ package com.pfe.pharmasys.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -11,9 +13,9 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.pfe.pharmasys.entities.types.TypeFacture;
 
@@ -34,7 +36,6 @@ public class Facture implements Serializable{
 	@Column(name="numero")
 	private String num_fact;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="date_fact")
 	private LocalDate date_fact;
 	
@@ -42,15 +43,33 @@ public class Facture implements Serializable{
 	@Column(name="type")
 	private TypeFacture type_fact;
 	
+	@Column(name="ajout")
+	private LocalDate date_ajout;
+	
+	@Column(name="modification")
+	private LocalDate date_modification;
+	
+	@OneToMany
+	private List<Produit> produits;
+	
+	@ManyToOne
+	private Client client;
+	
+	@ManyToOne
+	private Fournisseur fournisseur;
+	
 	public Facture() {
 		super();
 	}
 
-	public Facture(UUID id_fact, String num_fact, LocalDate date_fact, TypeFacture type_fact) {
+	public Facture(UUID id_fact, String num_fact, LocalDate date_fact, TypeFacture type_fact, LocalDate date_ajout, LocalDate date_modification) {
 		this.id_fact = id_fact;
 		this.num_fact = num_fact;
 		this.date_fact = date_fact;
 		this.type_fact = type_fact;
+		this.date_ajout = date_ajout;
+		this.date_modification = date_modification;
+		produits = new ArrayList<>();
 	}
 
 	public UUID getId_fact() {
@@ -84,5 +103,47 @@ public class Facture implements Serializable{
 	public void setType_fact(TypeFacture type_fact) {
 		this.type_fact = type_fact;
 	}
+
+	public List<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setProduits(List<Produit> produits) {
+		this.produits = produits;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+
+	public LocalDate getDate_ajout() {
+		return date_ajout;
+	}
+
+	public void setDate_ajout(LocalDate date_ajout) {
+		this.date_ajout = date_ajout;
+	}
+
+	public LocalDate getDate_modification() {
+		return date_modification;
+	}
+
+	public void setDate_modification(LocalDate date_modification) {
+		this.date_modification = date_modification;
+	}
+	
+	
 	
 }

@@ -1,5 +1,6 @@
 package com.pfe.pharmasys.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,11 +25,14 @@ public class FactureServiceImpl implements FactureService{
 	
 	@Override
 	public void addFacture(Facture facture) {
+		facture.setDate_ajout(LocalDate.now());
+		facture.setDate_modification(LocalDate.now());
 		factureDao.save(facture);
 	}
 
 	@Override
 	public void updateFacture(Facture facture) {
+		facture.setDate_modification(LocalDate.now());
 		factureDao.save(facture);
 		
 	}

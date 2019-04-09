@@ -1,5 +1,6 @@
 package com.pfe.pharmasys.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -21,6 +22,8 @@ public class CongesServiceImpl implements CongesService{
 	private CongesDao congesDao;
 	@Override
 	public void addConges(Conges conges) {
+		conges.setDate_ajout(LocalDate.now());
+		conges.setDate_modification(LocalDate.now());
 		congesDao.save(conges);
 		
 	}

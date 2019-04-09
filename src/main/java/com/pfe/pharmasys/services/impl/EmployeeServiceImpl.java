@@ -1,5 +1,6 @@
 package com.pfe.pharmasys.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -24,11 +25,14 @@ public class EmployeeServiceImpl implements EmployeeService{
 	
 	@Override
 	public void addEmployee(Employee employee) {
+		employee.setDate_ajout(LocalDate.now());
+		employee.setDate_modification(LocalDate.now());
 		employeeDao.save(employee);
 	}
 
 	@Override
 	public void updateEmployee(Employee employee) {
+		employee.setDate_modification(LocalDate.now());
 		employeeDao.save(employee);
 	}
 
@@ -45,6 +49,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public void deleteEmployee(UUID id) {
 		employeeDao.deleteById(id);		
+	}
+
+	@Override
+	public Optional<Employee> findByEmail(String email) {
+		return employeeDao.findByEmail(email);
 	}
 
 }

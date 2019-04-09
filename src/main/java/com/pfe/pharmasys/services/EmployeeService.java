@@ -17,6 +17,8 @@ public interface EmployeeService {
 	public List<Employee> listEmployee();
 	
 	public void deleteEmployee(UUID id);
+	
+	public Optional<Employee> findByEmail(String email);
 
 
 }

@@ -1,5 +1,6 @@
 package com.pfe.pharmasys.services.impl;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -23,12 +24,15 @@ public class ProduitServiceImpl implements ProduitService{
 	
 	@Override
 	public void addProduit(Produit produit) {
+		produit.setDate_ajout(LocalDate.now());
+		produit.setDate_modification(LocalDate.now());
 		produitDao.save(produit);
 		
 	}
 
 	@Override
 	public void updateProduit(Produit produit) {
+		produit.setDate_modification(LocalDate.now());
 		produitDao.save(produit);
 	}
 

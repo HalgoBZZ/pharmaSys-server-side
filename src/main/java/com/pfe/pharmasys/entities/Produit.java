@@ -10,9 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import com.pfe.pharmasys.entities.types.Forme;
 
@@ -46,7 +45,6 @@ public class Produit implements Serializable{
 	@Column(name="quantite")
 	private int qte_prod;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="expiration")
 	private LocalDate expiration;
 	
@@ -56,13 +54,17 @@ public class Produit implements Serializable{
 	@Column(name="tva")
 	private float tva_prod;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name="added")
+	@Column(name="ajout")
 	private LocalDate date_ajout;
 	
-	@Temporal(TemporalType.DATE)
-	@Column(name="updated")
+	@Column(name="modification")
 	private LocalDate date_modification;
+	
+	@ManyToOne
+	private Fournisseur fournisseur;
+	
+	@ManyToOne
+	private Categorie categorie;
 
 	public Produit() {
 		super();
@@ -170,6 +172,22 @@ public class Produit implements Serializable{
 
 	public void setDate_modification(LocalDate date_modification) {
 		this.date_modification = date_modification;
+	}
+
+	public Fournisseur getFournisseur() {
+		return fournisseur;
+	}
+
+	public void setFournisseur(Fournisseur fournisseur) {
+		this.fournisseur = fournisseur;
+	}
+
+	public Categorie getCategorie() {
+		return categorie;
+	}
+
+	public void setCategorie(Categorie categorie) {
+		this.categorie = categorie;
 	}
 	
 	

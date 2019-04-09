@@ -2,16 +2,20 @@ package com.pfe.pharmasys.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="fournisseur")
@@ -39,13 +43,19 @@ public class Fournisseur implements Serializable{
 	@Column(name="tel")
 	private int tel_four;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="ajout")
 	private LocalDate date_ajout;
 	
-	@Temporal(TemporalType.DATE)
 	@Column(name="modification")
 	private LocalDate date_modification;
+	
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="fournisseur")
+	private List<Produit> produits;
+	
+	@JsonIgnore
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="fournisseur")
+	private List<Facture> factures;
 
 	public Fournisseur() {
 		super();
@@ -61,6 +71,8 @@ public class Fournisseur implements Serializable{
 		this.tel_four = tel_four;
 		this.date_ajout = date_ajout;
 		this.date_modification = date_modification;
+		produits = new ArrayList<>();
+		factures = new ArrayList<>();
 	}
 
 
@@ -119,5 +131,23 @@ public class Fournisseur implements Serializable{
 	public void setDate_modification(LocalDate date_modification) {
 		this.date_modification = date_modification;
 	}
+
+	public List<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setProduits(List<Produit> produits) {
+		this.produits = produits;
+	}
+
+	public List<Facture> getFactures() {
+		return factures;
+	}
+
+	public void setFactures(List<Facture> factures) {
+		this.factures = factures;
+	}
+	
+	
 	
 }
