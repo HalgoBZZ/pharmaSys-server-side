@@ -60,6 +60,9 @@ public class Produit implements Serializable{
 	@Column(name="modification")
 	private LocalDate date_modification;
 	
+	@Column(name="production")
+	private LocalDate production_prod;
+	
 	@ManyToOne
 	private Fournisseur fournisseur;
 	
@@ -71,7 +74,7 @@ public class Produit implements Serializable{
 	}
 
 	public Produit(Long id_prod, String nom_prod, String ref_prod, Forme forme_prod, String dosage_prod, int qte_prod,
-			LocalDate expiration, float prix_prod, float tva_prod, LocalDate date_ajout, LocalDate date_modification) {
+			LocalDate expiration, float prix_prod, float tva_prod, LocalDate date_ajout, LocalDate date_modification, LocalDate production) {
 		super();
 		this.id_prod = id_prod;
 		this.nom_prod = nom_prod;
@@ -84,10 +87,19 @@ public class Produit implements Serializable{
 		this.tva_prod = tva_prod;
 		this.date_ajout = date_ajout;
 		this.date_modification = date_modification;
+		this.production_prod = production;
 	}
 
 	public Long getId_prod() {
 		return id_prod;
+	}
+
+	public LocalDate getProduction_prod() {
+		return production_prod;
+	}
+
+	public void setProduction_prod(LocalDate production_prod) {
+		this.production_prod = production_prod;
 	}
 
 	public void setId_prod(Long id_prod) {

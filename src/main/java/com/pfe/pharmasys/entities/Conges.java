@@ -2,7 +2,7 @@ package com.pfe.pharmasys.entities;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.UUID;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -30,7 +30,7 @@ public class Conges implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_conges")
-	private UUID id_conges;
+	private Long id_conges;
 	
 	@Column(name="debut")
 	private LocalDate date_debut;
@@ -58,7 +58,7 @@ public class Conges implements Serializable{
 		super();
 	}
 
-	public Conges(UUID id_conges, LocalDate date_debut, LocalDate date_fin, String cause, LocalDate date_ajout,
+	public Conges(Long id_conges, LocalDate date_debut, LocalDate date_fin, String cause, LocalDate date_ajout,
 			LocalDate date_modification, Etat etat_conges) {
 		super();
 		this.id_conges = id_conges;
@@ -70,11 +70,11 @@ public class Conges implements Serializable{
 		this.etat_conges = etat_conges;
 	}
 
-	public UUID getId_conges() {
+	public Long getId_conges() {
 		return id_conges;
 	}
 
-	public void setId_conges(UUID id_conges) {
+	public void setId_conges(Long id_conges) {
 		this.id_conges = id_conges;
 	}
 

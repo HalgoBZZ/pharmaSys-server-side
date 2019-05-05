@@ -2,7 +2,7 @@ package com.pfe.pharmasys.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import com.pfe.pharmasys.entities.Employee;
 
@@ -12,13 +12,19 @@ public interface EmployeeService {
 	
 	public void updateEmployee(Employee employee);
 	
-	public Optional<Employee> findEmployee(UUID id);
+	public Optional<Employee> findEmployee(Long id);
 	
 	public List<Employee> listEmployee();
 	
-	public void deleteEmployee(UUID id);
+	public void deleteEmployee(Long id);
 	
 	public Optional<Employee> findByEmail(String email);
+
+	public Employee authentication(String login, String pwd);
+
+	public Employee findByLogin(String login);
+
+	public Employee findByEmailAndLogin(String login, String email);
 
 
 }

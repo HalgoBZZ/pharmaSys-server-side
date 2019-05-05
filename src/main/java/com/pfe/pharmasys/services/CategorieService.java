@@ -2,7 +2,7 @@ package com.pfe.pharmasys.services;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import com.pfe.pharmasys.entities.Categorie;
 
@@ -12,10 +12,10 @@ public interface CategorieService {
 	
 	public void updateCategorie(Categorie categorie);
 	
-	public Optional<Categorie> findCategorie(UUID id);
+	public Optional<Categorie> findCategorie(Long id);
 	
 	public List<Categorie> listCategorie();
 	
-	public void deleteCategorie(UUID id);
+	public void deleteCategorie(Long id);
 
 }

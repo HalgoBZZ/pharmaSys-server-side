@@ -3,7 +3,7 @@ package com.pfe.pharmasys.services.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.transaction.Transactional;
 
@@ -38,7 +38,7 @@ public class FactureServiceImpl implements FactureService{
 	}
 
 	@Override
-	public Optional<Facture> findFacture(UUID id) {
+	public Optional<Facture> findFacture(Long id) {
 		return factureDao.findById(id);
 	}
 
@@ -48,7 +48,7 @@ public class FactureServiceImpl implements FactureService{
 	}
 
 	@Override
-	public void deleteFacture(UUID id) {
+	public void deleteFacture(Long id) {
 		factureDao.deleteById(id);
 	}
 

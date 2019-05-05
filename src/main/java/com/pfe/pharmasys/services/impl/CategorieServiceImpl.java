@@ -3,7 +3,7 @@ package com.pfe.pharmasys.services.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.transaction.Transactional;
 
@@ -36,7 +36,7 @@ public class CategorieServiceImpl implements CategorieService{
 	}
 
 	@Override
-	public Optional<Categorie> findCategorie(UUID id) {
+	public Optional<Categorie> findCategorie(Long id) {
 		return categorieDao.findById(id);
 	}
 
@@ -46,7 +46,7 @@ public class CategorieServiceImpl implements CategorieService{
 	}
 
 	@Override
-	public void deleteCategorie(UUID id) {
+	public void deleteCategorie(Long id) {
 		categorieDao.deleteById(id);		
 	}
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -31,7 +31,7 @@ public class Facture implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_fact",nullable=false, updatable=false)
-	private UUID id_fact;
+	private Long id_fact;
 	
 	@Column(name="numero")
 	private String num_fact;
@@ -62,7 +62,7 @@ public class Facture implements Serializable{
 		super();
 	}
 
-	public Facture(UUID id_fact, String num_fact, LocalDate date_fact, TypeFacture type_fact, LocalDate date_ajout, LocalDate date_modification) {
+	public Facture(Long id_fact, String num_fact, LocalDate date_fact, TypeFacture type_fact, LocalDate date_ajout, LocalDate date_modification) {
 		this.id_fact = id_fact;
 		this.num_fact = num_fact;
 		this.date_fact = date_fact;
@@ -72,11 +72,11 @@ public class Facture implements Serializable{
 		produits = new ArrayList<>();
 	}
 
-	public UUID getId_fact() {
+	public Long getId_fact() {
 		return id_fact;
 	}
 
-	public void setId_fact(UUID id_fact) {
+	public void setId_fact(Long id_fact) {
 		this.id_fact = id_fact;
 	}
 

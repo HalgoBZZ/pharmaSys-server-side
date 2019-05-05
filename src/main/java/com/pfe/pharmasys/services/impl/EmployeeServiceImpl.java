@@ -3,7 +3,7 @@ package com.pfe.pharmasys.services.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.transaction.Transactional;
 
@@ -37,7 +37,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public Optional<Employee> findEmployee(UUID id) {
+	public Optional<Employee> findEmployee(Long id) {
 		return employeeDao.findById(id);
 	}
 
@@ -47,7 +47,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public void deleteEmployee(UUID id) {
+	public void deleteEmployee(Long id) {
 		employeeDao.deleteById(id);		
 	}
 
@@ -55,5 +55,22 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public Optional<Employee> findByEmail(String email) {
 		return employeeDao.findByEmail(email);
 	}
+
+	@Override
+	public Employee authentication(String login, String pwd) {
+		return employeeDao.authentication(login, pwd);
+	}
+
+	@Override
+	public Employee findByLogin(String login) {
+		return employeeDao.findByLogin(login);
+	}
+
+	@Override
+	public Employee findByEmailAndLogin(String login, String email) {
+		return employeeDao.findByEmailAndLogin(login, email);
+	}
+	
+	
 
 }

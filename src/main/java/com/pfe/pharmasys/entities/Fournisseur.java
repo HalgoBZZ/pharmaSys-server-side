@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +29,7 @@ public class Fournisseur implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_four", nullable=false, updatable=false)
-	private UUID id_four;
+	private Long id_four;
 	
 	@Column(name="nom")
 	private String nom_four;
@@ -61,7 +61,7 @@ public class Fournisseur implements Serializable{
 		super();
 	}
 
-	public Fournisseur(UUID id_four, String nom_four, String email_four, String adresse_four, int tel_four,
+	public Fournisseur(Long id_four, String nom_four, String email_four, String adresse_four, int tel_four,
 			LocalDate date_ajout, LocalDate date_modification) {
 		super();
 		this.id_four = id_four;
@@ -76,11 +76,11 @@ public class Fournisseur implements Serializable{
 	}
 
 
-	public UUID getId_four() {
+	public Long getId_four() {
 		return id_four;
 	}
 
-	public void setId_four(UUID id_four) {
+	public void setId_four(Long id_four) {
 		this.id_four = id_four;
 	}
 

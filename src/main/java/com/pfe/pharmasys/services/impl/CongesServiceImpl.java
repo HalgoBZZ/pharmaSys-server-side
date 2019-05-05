@@ -3,7 +3,7 @@ package com.pfe.pharmasys.services.impl;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import javax.transaction.Transactional;
 
@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.pfe.pharmasys.doa.CongesDao;
 import com.pfe.pharmasys.entities.Conges;
+import com.pfe.pharmasys.entities.types.Etat;
 import com.pfe.pharmasys.services.CongesService;
 
 @Service
@@ -24,18 +25,19 @@ public class CongesServiceImpl implements CongesService{
 	public void addConges(Conges conges) {
 		conges.setDate_ajout(LocalDate.now());
 		conges.setDate_modification(LocalDate.now());
+		conges.setEtat_conges(Etat.En_Attente);
 		congesDao.save(conges);
 		
 	}
 
 	@Override
 	public void updateConges(Conges conges) {
+		conges.setDate_modification(LocalDate.now());
 		congesDao.save(conges);
-		
 	}
 
 	@Override
-	public Optional<Conges> findConges(UUID id) {
+	public Optional<Conges> findConges(Long id) {
 		return congesDao.findById(id);
 	}
 
@@ -45,8 +47,10 @@ public class CongesServiceImpl implements CongesService{
 	}
 
 	@Override
-	public void deleteConges(UUID id) {
+	public void deleteConges(Long id) {
 		congesDao.deleteById(id);
 	}
+	
+	
 
 }

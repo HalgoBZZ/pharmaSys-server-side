@@ -1,7 +1,7 @@
 package com.pfe.pharmasys.entities.types;
 
 public enum Role {
-	Admin,
+	Adminstrateur,
 	Pharmacien,
 	Caissier
 

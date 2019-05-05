@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -33,7 +33,7 @@ public class Employee implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_emp", nullable=false, updatable=false)
-	private UUID id_emp;
+	private Long id_emp;
 	
 	@Column(name="nom")
 	private String nom_emp;
@@ -70,7 +70,7 @@ public class Employee implements Serializable{
 	@Column(name="modification")
 	private LocalDate date_modification;
 	
-	@Column(name="login")
+	@Column(name="login", unique=true)
 	private String login;
 	
 	@Column(name="pwd")
@@ -87,7 +87,7 @@ public class Employee implements Serializable{
 		super();
 	}
 
-	public Employee(UUID id_emp, String nom_emp, String prenom_emp, LocalDate date_naiss_emp, String email_emp,
+	public Employee(Long id_emp, String nom_emp, String prenom_emp, LocalDate date_naiss_emp, String email_emp,
 			String adresse, int tel_emp, String poste_emp, Role role_emp, Genre sexe_emp, LocalDate date_ajout,
 			LocalDate date_modification, String login, String pwd, String photo) {
 		super();
@@ -109,11 +109,11 @@ public class Employee implements Serializable{
 		conges = new ArrayList<>();
 	}
 
-	public UUID getId_emp() {
+	public Long getId_emp() {
 		return id_emp;
 	}
 
-	public void setId_emp(UUID id_emp) {
+	public void setId_emp(Long id_emp) {
 		this.id_emp = id_emp;
 	}
 

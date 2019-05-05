@@ -2,9 +2,10 @@ package com.pfe.pharmasys.controller;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import com.pfe.pharmasys.entities.Produit;
 import com.pfe.pharmasys.services.ProduitService;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(value="/produit")
 public class ProduitController {
 
@@ -35,7 +37,7 @@ public class ProduitController {
 	}
 	
 	@GetMapping(value="/find/{id}")
-	public Optional<Produit> findProduit(@PathVariable("id") UUID id){
+	public Optional<Produit> findProduit(@PathVariable("id") Long id){
 		return produitService.findProduit(id);
 	}
 	
@@ -45,7 +47,7 @@ public class ProduitController {
 	}
 	
 	@DeleteMapping(value="/delete/{id}")
-	public void deleteProduit(@PathVariable("id") UUID id) {
+	public void deleteProduit(@PathVariable("id") Long id) {
 		produitService.deleteProduit(id);
 	}
 }

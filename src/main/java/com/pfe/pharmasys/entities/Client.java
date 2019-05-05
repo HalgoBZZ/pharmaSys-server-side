@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -30,7 +30,7 @@ public class Client implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_client")
-	private UUID id_client;
+	private Long id_client;
 	
 	@Column(name="nom")
 	private String nom_client;
@@ -49,7 +49,7 @@ public class Client implements Serializable{
 		super();
 	}
 
-	public Client(UUID id_client, String nom_client, LocalDate date_ajout, LocalDate date_modification) {
+	public Client(Long id_client, String nom_client, LocalDate date_ajout, LocalDate date_modification) {
 		super();
 		this.id_client = id_client;
 		this.nom_client = nom_client;
@@ -58,11 +58,11 @@ public class Client implements Serializable{
 		factures = new ArrayList<>();
 	}
 
-	public UUID getId_client() {
+	public Long getId_client() {
 		return id_client;
 	}
 
-	public void setId_client(UUID id_client) {
+	public void setId_client(Long id_client) {
 		this.id_client = id_client;
 	}
 

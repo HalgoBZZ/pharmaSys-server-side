@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
+
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -29,7 +29,7 @@ public class Categorie implements Serializable{
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_cat", nullable=false, updatable=false)
-	private UUID id_cat;
+	private Long id_cat;
 	
 	@Column(name="nom")
 	private String nom_cat;
@@ -48,7 +48,7 @@ public class Categorie implements Serializable{
 		super();
 	}
 
-	public Categorie(UUID id_cat, String nom_cat, LocalDate date_ajout, LocalDate date_modification) {
+	public Categorie(Long id_cat, String nom_cat, LocalDate date_ajout, LocalDate date_modification) {
 		super();
 		this.id_cat = id_cat;
 		this.nom_cat = nom_cat;
@@ -65,11 +65,11 @@ public class Categorie implements Serializable{
 		this.nom_cat = nom_cat;
 	}
 
-	public UUID getId_cat() {
+	public Long getId_cat() {
 		return id_cat;
 	}
 
-	public void setId_cat(UUID id_cat) {
+	public void setId_cat(Long id_cat) {
 		this.id_cat = id_cat;
 	}
 
